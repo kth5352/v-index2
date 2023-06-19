@@ -68,6 +68,138 @@ app.get('/music-data', (req, res) => {
 })
 
 
+app.delete('/vtuber-data/delete/:id', (req, res) => {
+    const { id } = req.params;
+    const sql = 'delete from vtuber where vtuber_id = ?';
+
+    db.query(sql, [id], (err, rows) => {
+        if (err) {
+            res.json({ result: "error" });
+            return console.log(err);
+        }
+        res.json({ result: "success" });
+    });
+});
+
+
+app.delete('/company-data/delete/:id', (req, res) => {
+    const { id } = req.params;
+    const sql = 'delete from company where company_id = ?';
+
+    db.query(sql, [id], (err, rows) => {
+        if (err) {
+            res.json({ result: "error" });
+            return console.log(err);
+        }
+        res.json({ result: "success" });
+    });
+});
+
+app.delete('/music-data/delete/:id', (req, res) => {
+    const { id } = req.params;
+    const sql = 'delete from music where music_id = ?';
+
+    db.query(sql, [id], (err, rows) => {
+        if (err) {
+            res.json({ result: "error" });
+            return console.log(err);
+        }
+        res.json({ result: "success" });
+    });
+});
+
+app.put('/vtuber-data/update/:id', (req, res) => {
+    const { id } = req.params;
+    const { name, vtuber_detail, vtuber_link, graduation, company_id, image } = req.body;
+    const sql = 'UPDATE vtuber SET name = ?, vtuber_detail = ?, vtuber_link = ?, graduation = ?, company_id = ?, image = ? WHERE vtuber_id = ?';
+
+    db.query(sql, [name, vtuber_detail, vtuber_link, graduation, company_id, image, id], (err, rows) => {
+        if (err) {
+            res.json({ result: "error" });
+            return console.log(err);
+        }
+        res.json({ result: "success" });
+    });
+});
+
+
+app.put('/company-data/update/:id', (req, res) => {
+    const { id } = req.params;
+    const { name, link, image } = req.body;
+    const sql = 'UPDATE company SET name = ?, link = ?, image = ? WHERE company_id = ?';
+
+    db.query(sql, [name, link, image, id], (err, rows) => {
+        if (err) {
+            res.json({ result: "error" });
+            return console.log(err);
+        }
+        res.json({ result: "success" });
+    });
+});
+
+app.put('/music-data/update/:id', (req, res) => {
+    const { id } = req.params;
+    const { name, music_link, vtuber_id, image } = req.body;
+    const sql = 'UPDATE music SET name = ?, music_link = ?, vtuber_id = ?, image = ? WHERE music_id = ?';
+
+    db.query(sql, [name, music_link, vtuber_id, image, id], (err, rows) => {
+        if (err) {
+            res.json({ result: "error" });
+            return console.log(err);
+        }
+        res.json({ result: "success" });
+    });
+});
+
+app.post('/:table', (req, res) => {
+    const { table } = req.params;
+    const data = req.body;
+
+    const keys = Object.keys(data);
+    const values = Object.values(data);
+
+    const sql = `INSERT INTO ${table} (${keys.join(', ')}) VALUES ?`;
+
+    db.query(sql, [[values]], (err, result) => {
+        if (err) {
+            res.json({ result: "error" });
+            return console.log(err);
+        }
+        res.json({ result: "success" });
+    });
+});
+
+app.put('/:table/:id', (req, res) => {
+    const { table, id } = req.params;
+    const data = req.body;
+
+    const sql = `UPDATE ${table} SET ? WHERE ${table}_id = ?`;
+
+    db.query(sql, [data, id], (err, result) => {
+        if (err) {
+            res.json({ result: "error" });
+            return console.log(err);
+        }
+        res.json({ result: "success" });
+    });
+});
+
+app.delete('/:table/:id', (req, res) => {
+    const { table, id } = req.params;
+
+    const sql = `DELETE FROM ${table} WHERE ${table}_id = ?`;
+
+    db.query(sql, [id], (err, result) => {
+        if (err) {
+            res.json({ result: "error" });
+            return console.log(err);
+        }
+        res.json({ result: "success" });
+    });
+});
+
+
+
 app.listen(port, () => {
-    console.log(`서버 실행됨 (port ${port})`)
-})
+    console.log(`서버 실행됨 (port ${port})`);
+});

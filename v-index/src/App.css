@@ -1,3 +1,8 @@
+.top {
+  height: 70px;
+}
+
+
 h1 {
   text-align: center;
 }
@@ -58,7 +63,6 @@ a:active {
 a.button {
   display: block;
   position: relative;
-  float: left;
   width: 120px;
   padding: 0;
   margin: 10px 20px 10px 0;
@@ -70,20 +74,44 @@ a.button {
   transition: all 0.2s;
 }
 
+.button {
+  display: block;
+  position: relative;
+  width: 120px;
+  padding: 0;
+  margin: 10px 20px 10px 0;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 50px;
+  color: #ffffff;
+  border-radius: 5px;
+  transition: all 0.2s;
+}
+
 .btnBlueGreen {
   background: #00AE68;
+  float: left;
 }
 
 .btnLightBlue {
   background: #5DC8CD;
+  float: left;
 }
 
 .btnOrange {
   background: #FFAA40;
+  float: left;
+}
+
+.btnPink {
+  background: #f55db8;
+  float: left;
 }
 
 .btnPurple {
   background: #A74982;
+  float: right;
 }
 
 .btnFade.btnBlueGreen:hover {
@@ -102,9 +130,40 @@ a.button {
   background: #6D184B;
 }
 
+.btnFade.btnPink:hover {
+  background: #b4538e;
+}
+
 .container {
   padding-top: 1em;
   margin-top: 1em;
   border-top:
     solid 1px #CCC;
+}
+
+.custom-btn {
+  width: 130px;
+  height: 40px;
+  padding: 10px 25px;
+  border: 2px solid #000;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+/* 1 */
+.btn-1 {
+  transition: all 0.3s ease;
+}
+
+.btn-1:hover {
+  box-shadow:
+    -7px -7px 20px 0px #fff9,
+    -4px -4px 5px 0px #fff9,
+    7px 7px 20px 0px #0002,
+    4px 4px 5px 0px #0001;
 }
