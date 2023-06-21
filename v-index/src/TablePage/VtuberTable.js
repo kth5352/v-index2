@@ -160,7 +160,7 @@ function VtuberTable() {
                                 </a>
                             </td>
                             <td>{vtuber.company || '개인세'}</td>
-                            <td>{vtuber.vtuber_detail}</td>
+                            <td className="textleft">{vtuber.vtuber_detail}</td>
                             <td>
                                 <button className="custom-btn btn-1" onClick={() => handleDialogOpen(vtuber.vtuber_id)}>Update</button>
                                 <button class="custom-btn btn-1" onClick={() => onRemove(vtuber.vtuber_id)}>Delete</button>
