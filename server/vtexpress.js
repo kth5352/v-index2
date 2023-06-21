@@ -22,17 +22,6 @@ app.get('/', (req, res) => {
     res.json({ result: "success" })
 })
 
-app.get('/vtuber', (req, res) => {
-    const sql = 'select * from VTUBER'
-
-    db.query(sql, (err, rows) => {
-        if (err) {
-            res.json({ result: "error" })
-            return console.log(err)
-        }
-        res.json(rows)
-    })
-})
 
 app.get('/vtuber-data', (req, res) => {
     const sql = 'SELECT v.name AS name, v.vtuber_link AS link, v.image AS img, c.name AS company, vtuber_id, v.vtuber_detail  FROM vtuber v LEFT JOIN company c ON v.company_id=c.company_id'
